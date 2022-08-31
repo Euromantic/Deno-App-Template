@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "allowJs": false
+  },
+  "lint": {
+    "files": {
+      "exclude": [".cov", ".cov.lcov", "coverage"]
+    }
+  },
+  "fmt": {
+    "files": {
+      "exclude": [".cov", ".cov.lcov", "coverage"]
+    }
+  },
+  "test": {
+    "files": {
+      "exclude": [".cov", ".cov.lcov", "coverage", "deps.ts"]
+    }
+  },
+  "tasks": {
+    "test": "rm -rf .cov; rm -rf .cov.lcov; deno test --coverage=.cov; deno coverage .cov --exclude=\"(deps|test)\\.ts\" --lcov --output=.cov.lcov",
+    "coverage": "rm -rf coverage; genhtml -q -o coverage .cov.lcov && xdg-open coverage/index.html"
+  }
+}

@@ -1,25 +1,11 @@
 {
-  "compilerOptions": {
-    "allowJs": false
-  },
-  "lint": {
-    "files": {
-      "exclude": [".cov", ".cov.lcov", "coverage"]
-    }
-  },
-  "fmt": {
-    "files": {
-      "exclude": [".cov", ".cov.lcov", "coverage"]
-    }
-  },
-  "test": {
-    "files": {
-      "exclude": [".cov", ".cov.lcov", "coverage", "deps.ts"]
-    }
-  },
+  "compilerOptions": { "allowJs": false },
+  "lint": { "files": { "exclude": [".cov", ".cov.lcov", "coverage"] } },
+  "fmt": { "files": { "exclude": [".cov", ".cov.lcov", "coverage"] } },
+  "test": { "files": { "exclude": [".cov", ".cov.lcov", "coverage"] } },
   "tasks": {
     "run": "deno run src/mod.ts",
-    "test": "rm -rf .cov; rm -rf .cov.lcov; deno test --coverage=.cov; deno coverage .cov --exclude=\"(deps|test)\\.ts\" --lcov --output=.cov.lcov",
+    "test": "rm -rf .cov; rm -rf .cov.lcov; deno test --coverage=.cov; deno coverage .cov --exclude=\"((^(mod|deps)\\.ts)|test\\.ts)\" --lcov --output=.cov.lcov",
     "coverage": "rm -rf coverage; genhtml -q -o coverage .cov.lcov && xdg-open coverage/index.html"
   }
 }

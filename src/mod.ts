@@ -1,6 +1,4 @@
-export function add(a: number, b: number): number {
-  return a + b;
-}
+import { add } from "./math.ts";
 
 // Learn more at https://deno.land/manual/examples/module_metadata#concepts
 if (import.meta.main) {

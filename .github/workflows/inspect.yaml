@@ -1,0 +1,25 @@
+name: Inspect code
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Lint and test with Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      - run: deno lint
+      - run: deno task test
+      - name: Report code coverage
+        uses: zgosalvez/github-actions-report-lcov@v1
+        with:
+          coverage-files: .cov.lcov
+          minimum-coverage: 100
+          github-token: ${{ secrets.GITHUB_TOKEN }}
